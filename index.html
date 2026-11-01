@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module II · Politics — UCSP</title>
+<meta name="description" content="Module II: Politics — power, rights, public trust, and your vote. A non-partisan UCSP learning module.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --indigo:    oklch(0.27 0.06 290);    /* deep plum-navy #241D45 */
+  --indigo-2:  oklch(0.33 0.07 290);    /* lighter panel */
+  --ink:       oklch(0.30 0.05 290);    /* text on light */
+  --lavender:  oklch(0.75 0.07 300);    /* #BAAAD7 */
+  --sky:       oklch(0.90 0.05 220);    /* #BBE9F2 */
+  --pink:      oklch(0.89 0.048 350);   /* #FFD3E0 */
+  --lilac-bg:  oklch(0.94 0.025 300);   /* page light bg */
+  --paper:     oklch(0.965 0.015 300);  /* card paper */
+  --light-txt: oklch(0.93 0.02 290);    /* text on dark */
+  --gold:      oklch(0.85 0.10 85);     /* star gold */
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'Rubik',-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --shadow:0 10px 26px -12px rgb(36 29 69 / .45);
+  --rad:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--lilac-bg);
+  color:var(--ink);
+  font-size:17px;line-height:1.65;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--indigo);color:var(--pink)}
+svg{display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:4px}
+section :focus-visible{outline-color:var(--indigo)}
+.dark :focus-visible,.dark:focus-visible{outline-color:var(--gold)}
+
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;
+  background:var(--paper);border:2px solid var(--indigo);border-radius:999px;
+  padding:6px 10px;box-shadow:var(--shadow);max-width:94vw;
+}
+nav .brand{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.08em;padding:6px 12px;white-space:nowrap}
+nav a.nl{
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-decoration:none;
+  padding:7px 12px;border-radius:999px;transition:background .18s ease,color .18s ease;white-space:nowrap;
+}
+nav a.nl:hover{background:var(--lavender)}
+nav a.nl.on{background:var(--indigo);color:var(--pink)}
+
+/* ============ STICKER PRIMITIVES ============ */
+.sticker{
+  background:var(--paper);border:2.5px solid var(--indigo);border-radius:var(--rad);
+  box-shadow:var(--shadow);position:relative;
+}
+.sticker::before{
+  content:"";position:absolute;inset:7px;border:1.5px dashed var(--indigo);
+  border-radius:calc(var(--rad) - 7px);opacity:.4;pointer-events:none;
+}
+.tag{
+  display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--sky);border:2px solid var(--indigo);border-radius:999px;
+  padding:6px 16px;box-shadow:3px 3px 0 var(--indigo);
+}
+.tag.pink{background:var(--pink)} .tag.lav{background:var(--lavender)}
+.tag.dark{background:var(--indigo);color:var(--pink)}
+
+.u-wavy{
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8' viewBox='0 0 40 8'%3E%3Cpath d='M0 5 Q5 1 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23BAAAD7' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") bottom left repeat-x;
+  background-size:40px 8px;padding-bottom:8px;text-decoration:none;
+}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;
+  padding:120px 20px 90px;overflow:hidden;background:var(--indigo);color:var(--light-txt);
+}
+/* sun-ray burst behind title */
+.hero::before{
+  content:"";position:absolute;left:50%;top:52%;width:150vmax;height:150vmax;
+  transform:translate(-50%,-50%);opacity:.10;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg, var(--lavender) 0deg 6deg, transparent 6deg 18deg);
+  border-radius:50%;
+  animation:spin 90s linear infinite;
+}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-inner{position:relative;z-index:5;text-align:center;max-width:920px}
+.hero .eyebrow{margin-bottom:26px;transform:rotate(-2deg)}
+.hero h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(52px,11.5vw,140px);line-height:.95;letter-spacing:-.01em;
+}
+.hero h1 .l1{display:block;color:var(--light-txt)}
+.hero h1 .l2{
+  display:block;font-style:italic;font-weight:500;
+  background:linear-gradient(100deg,var(--sky),var(--lavender) 55%,var(--pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{margin:30px auto 0;max-width:58ch;font-size:clamp(16px,2.2vw,20px);color:oklch(0.86 0.03 290)}
+.hero-sub .u-wavy{color:var(--light-txt)}
+.hero .cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;border:2.5px solid var(--indigo);border-radius:999px;padding:14px 26px;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.btn.primary{background:var(--pink);color:var(--indigo);box-shadow:4px 4px 0 rgb(10 8 24 / .8)}
+.btn.ghost{background:transparent;color:var(--light-txt);border-color:var(--lavender);box-shadow:4px 4px 0 rgb(10 8 24 / .8)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgb(10 8 24 / .8)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgb(10 8 24 / .8)}
+
+/* floating shapes */
+.floaty{position:absolute;z-index:3;pointer-events:none;will-change:transform;filter:drop-shadow(0 10px 14px rgb(10 8 24 / .5))}
+.floaty svg{width:100%;height:100%}
+.f-star1{width:80px;height:80px;top:16%;left:9%;animation:bob 7s ease-in-out infinite}
+.f-star2{width:56px;height:56px;top:24%;right:12%;animation:bob 8s ease-in-out infinite;animation-delay:-3s}
+.f-star3{width:64px;height:64px;bottom:18%;left:14%;animation:bob 9s ease-in-out infinite;animation-delay:-1.5s}
+.f-scale{width:140px;height:140px;bottom:12%;right:7%;animation:bob 8.5s ease-in-out infinite;animation-delay:-2.5s}
+.f-btn{width:80px;height:80px;top:12%;right:32%;animation:bob 6.5s ease-in-out infinite;animation-delay:-4s}
+@keyframes bob{0%,100%{translate:0 0;rotate:-4deg}50%{translate:0 -18px;rotate:5deg}}
+
+/* marquee */
+.marquee{
+  position:relative;z-index:6;background:var(--pink);color:var(--indigo);
+  border-top:2.5px solid var(--indigo);border-bottom:2.5px solid var(--indigo);
+  transform:rotate(1.2deg) scale(1.02);margin-top:-28px;overflow:hidden;padding:14px 0;
+}
+.marquee-track{display:flex;gap:0;width:max-content;animation:scrollx 30s linear infinite}
+.marquee span{
+  font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.4vw,24px);
+  white-space:nowrap;padding:0 18px;letter-spacing:.02em;
+}
+.marquee b{color:oklch(0.45 0.10 290);font-family:var(--mono);font-size:.8em;font-style:normal}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+section{padding:clamp(70px,10vw,130px) 20px;position:relative}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-head{max-width:760px;margin-bottom:clamp(36px,5vw,64px)}
+.sec-head h2{
+  font-family:var(--serif);font-weight:700;font-size:clamp(34px,5.8vw,62px);
+  line-height:1.05;letter-spacing:-.01em;margin-top:20px;
+}
+.sec-head h2 em{font-style:italic;font-weight:500;color:oklch(0.55 0.12 300)}
+.dark .sec-head h2{color:var(--light-txt)}
+.dark .sec-head h2 em{color:var(--pink)}
+.sec-head p{margin-top:18px;font-size:clamp(16px,2vw,19px);max-width:62ch}
+.kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.45 0.12 300)}
+.dark .kicker{color:var(--gold)}
+.dark .sec-head p{color:oklch(0.84 0.03 290)}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}.js .rv.d4{transition-delay:.32s}
+
+/* — what is politics — */
+.def-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:stretch}
+.def-card{padding:clamp(28px,4vw,48px)}
+.def-card .big{font-family:var(--serif);font-size:clamp(21px,2.8vw,29px);line-height:1.4;font-weight:500}
+.def-card .big em{color:oklch(0.5 0.14 300);font-weight:600}
+.def-card cite{display:block;margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;font-style:normal;color:oklch(0.45 0.12 300)}
+.mini-stack{display:grid;gap:26px}
+.mini-card{padding:26px 28px;transform:rotate(1deg)}
+.mini-card:nth-child(2){transform:rotate(-1.2deg)}
+.mini-card h3{font-family:var(--serif);font-size:22px;margin-bottom:8px}
+.mini-card p{font-size:15.5px}
+
+/* — sovereignty quote — */
+.sovereign{
+  background:
+    repeating-linear-gradient(45deg, rgb(187 170 215 / .06) 0 22px, transparent 22px 44px),
+    var(--indigo);
+  color:var(--light-txt);text-align:center;overflow:hidden;position:relative;
+}
+.sovereign .quote-mark{font-family:var(--serif);font-size:110px;line-height:.4;color:var(--gold);opacity:.8;display:block;margin-bottom:8px}
+.sovereign blockquote{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(24px,4.4vw,44px);line-height:1.3;max-width:22ch;margin:0 auto;
+}
+.sovereign blockquote strong{color:var(--pink);font-style:normal;font-weight:700}
+.sovereign cite{display:block;margin-top:26px;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;font-style:normal;color:var(--gold)}
+.sovereign .after{max-width:56ch;margin:30px auto 0;font-size:clamp(15.5px,2vw,18px);color:oklch(0.84 0.03 290)}
+.three-stars{display:flex;gap:26px;justify-content:center;margin-bottom:34px}
+.three-stars svg{width:38px;height:38px;filter:drop-shadow(0 4px 6px rgb(10 8 24/.5))}
+.three-stars svg:nth-child(2){transform:translateY(-10px)}
+
+/* — rights — */
+.rights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.right{
+  padding:28px;background:var(--paper);border:2.5px solid var(--indigo);border-radius:var(--rad);
+  box-shadow:var(--shadow);transition:transform .2s ease;position:relative;
+}
+.right:hover{transform:translateY(-6px)}
+.right:nth-child(3n+2){transform:rotate(.8deg)}
+.right:nth-child(3n+2):hover{transform:translateY(-6px) rotate(1.5deg)}
+.right .art{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:oklch(0.5 0.14 300);display:block;margin-bottom:12px}
+.right h3{font-family:var(--serif);font-size:21px;margin-bottom:8px}
+.right p{font-size:14.5px}
+.rights-note{
+  margin-top:30px;padding:22px 28px;border-left:5px solid var(--lavender);
+  background:var(--sky);border-radius:0 var(--rad) var(--rad) 0;font-size:15.5px;
+}
+.rights-note strong{color:var(--indigo)}
+
+/* — public trust — */
+.trust{background:var(--indigo-2);color:var(--light-txt)}
+.trust-quote{
+  max-width:820px;margin:0 auto 54px;padding:clamp(30px,4.5vw,52px);
+  background:var(--paper);color:var(--ink);border:2.5px solid var(--indigo);
+  border-radius:var(--rad);box-shadow:8px 8px 0 var(--pink);transform:rotate(-.8deg);position:relative;
+}
+.trust-quote p{font-family:var(--serif);font-size:clamp(19px,2.8vw,28px);line-height:1.45;font-style:italic}
+.trust-quote p strong{font-style:normal;color:oklch(0.5 0.14 300)}
+.trust-quote cite{display:block;margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;font-style:normal;color:oklch(0.45 0.12 300)}
+.trust-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:960px;margin:0 auto}
+.trust-col h3{font-family:var(--serif);font-size:clamp(22px,3vw,30px);margin-bottom:16px;color:var(--pink)}
+.trust-col ul{list-style:none}
+.trust-col li{
+  padding:13px 0 13px 34px;position:relative;font-size:15.5px;
+  border-bottom:1.5px dashed rgb(186 170 215 / .35);color:oklch(0.87 0.03 290);
+}
+.trust-col li:last-child{border-bottom:0}
+.trust-col.do li::before{content:"✦";position:absolute;left:4px;color:var(--gold)}
+.trust-col.dont li::before{content:"✕";position:absolute;left:4px;color:var(--pink);font-weight:700}
+
+/* — corruption — */
+.corrupt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.corrupt-card{padding:clamp(26px,3.4vw,40px)}
+.corrupt-card h3{font-family:var(--serif);font-size:clamp(21px,2.6vw,28px);margin:12px 0 12px}
+.corrupt-card p,.corrupt-card li{font-size:15.5px}
+.corrupt-card ul{list-style:none;margin-top:8px}
+.corrupt-card li{padding:8px 0 8px 30px;position:relative;border-bottom:1.5px dashed rgb(36 29 69 / .2)}
+.corrupt-card li:last-child{border-bottom:0}
+.corrupt-card li::before{content:"→";position:absolute;left:4px;font-weight:700;color:oklch(0.5 0.14 300)}
+.corrupt-card.tint1{background:var(--sky);border-radius:var(--rad)}
+.corrupt-card.tint2{background:var(--lavender);border-radius:var(--rad)}
+.corrupt-card.tint3{background:var(--pink);border-radius:var(--rad);grid-column:span 2}
+.corrupt-card.tint3 h3{margin-top:0}
+
+/* — vote — */
+.vote{background:linear-gradient(180deg,var(--lilac-bg),var(--sky) 160%)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step}
+.step{
+  padding:28px 24px;background:var(--paper);border:2.5px solid var(--indigo);
+  border-radius:var(--rad);box-shadow:var(--shadow);position:relative;counter-increment:step;
+}
+.step::before{
+  content:counter(step,decimal-leading-zero);
+  position:absolute;top:-18px;left:18px;font-family:var(--mono);font-weight:600;font-size:13px;
+  background:var(--indigo);color:var(--pink);border-radius:999px;padding:6px 14px;letter-spacing:.1em;
+}
+.step:nth-child(2){transform:rotate(-1deg)}
+.step:nth-child(3){transform:rotate(1deg)}
+.step h3{font-family:var(--serif);font-size:20px;margin:14px 0 8px}
+.step p{font-size:14.5px}
+.vote-banner{
+  margin-top:44px;padding:clamp(30px,4.5vw,52px);text-align:center;
+  background:var(--indigo);color:var(--light-txt);border-radius:var(--rad);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.vote-banner::before{
+  content:"";position:absolute;inset:0;opacity:.09;
+  background:repeating-conic-gradient(from 0deg at 50% 130%, var(--pink) 0deg 5deg, transparent 5deg 16deg);
+}
+.vote-banner h3{font-family:var(--serif);font-size:clamp(26px,4.4vw,44px);line-height:1.15;position:relative}
+.vote-banner h3 em{color:var(--gold)}
+.vote-banner p{position:relative;margin-top:16px;max-width:58ch;margin-inline:auto;color:oklch(0.85 0.03 290);font-size:15.5px}
+
+/* — bias — */
+.bias-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.bias-card{
+  padding:clamp(26px,3.2vw,38px);background:var(--paper);border:2.5px solid var(--indigo);
+  border-radius:var(--rad);box-shadow:var(--shadow);
+}
+.bias-card:nth-child(2){background:var(--pink)}
+.bias-card:nth-child(3){background:var(--lavender)}
+.bias-card h3{font-family:var(--serif);font-size:clamp(20px,2.5vw,26px);margin-bottom:10px}
+.bias-card p{font-size:15px}
+.bias-card .chip{
+  display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;
+  border:2px solid var(--indigo);border-radius:999px;padding:4px 12px;margin-bottom:14px;background:var(--paper);
+}
+
+/* — pledge — */
+.pledge{background:var(--indigo);color:var(--light-txt);text-align:center}
+.pledge .box{max-width:760px;margin:0 auto}
+.pledge h2{font-family:var(--serif);font-size:clamp(30px,5vw,52px);line-height:1.1;margin:20px 0 22px}
+.pledge h2 em{color:var(--gold)}
+.pledge p{color:oklch(0.84 0.03 290);max-width:60ch;margin:0 auto 14px;font-size:16px}
+.pledge .seal{
+  width:96px;height:96px;margin:0 auto 8px;border-radius:50%;border:2.5px dashed var(--gold);
+  display:grid;place-items:center;animation:spin2 26s linear infinite;
+}
+@keyframes spin2{to{transform:rotate(360deg)}}
+.pledge .seal svg{width:54px;height:54px;animation:spin2 26s linear infinite reverse}
+
+/* — footer — */
+footer{background:oklch(0.22 0.05 290);color:var(--light-txt);padding:60px 20px 40px;text-align:center}
+footer .foot-title{font-family:var(--serif);font-style:italic;font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+footer p{font-size:14.5px;color:oklch(0.8 0.03 290);max-width:62ch;margin:0 auto 26px}
+footer .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer .links a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-decoration:none;
+  border:2px solid var(--light-txt);border-radius:999px;padding:10px 20px;transition:all .18s ease;
+}
+footer .links a:hover{background:var(--pink);color:var(--indigo);border-color:var(--pink)}
+footer .tiny{margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:oklch(0.65 0.03 290);max-width:70ch;margin-inline:auto;line-height:1.8}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  .def-grid,.trust-cols{grid-template-columns:1fr}
+  .rights-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:34px}
+  .corrupt-grid,.bias-grid{grid-template-columns:1fr}
+  .corrupt-card.tint3{grid-column:span 1}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  nav{top:8px;gap:2px;padding:5px 8px}
+  nav a.nl{padding:6px 9px;font-size:11px}
+  .rights-grid,.steps{grid-template-columns:1fr}
+  .f-scale{width:90px;height:90px}
+  .f-btn{display:none}
+  .marquee{transform:rotate(0) scale(1);margin-top:-10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important;scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<nav aria-label="Module navigation">
+  <span class="brand">UCSP · MIL</span>
+  <a class="nl" href="module-1-culture.html">I · Culture</a>
+  <a class="nl on" href="module-2-politics.html" aria-current="page">II · Politics</a>
+  <a class="nl" href="module-3-digital-literacy.html">III · Digital Literacy</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero dark" id="top">
+  <div class="floaty f-star1" data-depth="34" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#F3CD88" stroke="#241D45" stroke-width="3" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="floaty f-star2" data-depth="-26" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#FFD3E0" stroke="#241D45" stroke-width="3" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="floaty f-star3" data-depth="20" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#BBE9F2" stroke="#241D45" stroke-width="3" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="floaty f-scale" data-depth="-40" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none"><g stroke="#F3CD88" stroke-width="4" stroke-linecap="round"><line x1="60" y1="14" x2="60" y2="92"/><line x1="22" y1="28" x2="98" y2="28"/><line x1="22" y1="28" x2="10" y2="56"/><line x1="22" y1="28" x2="34" y2="56"/><line x1="98" y1="28" x2="86" y2="56"/><line x1="98" y1="28" x2="110" y2="56"/><path d="M6 56 a16 12 0 0 0 32 0"/><path d="M82 56 a16 12 0 0 0 32 0"/><line x1="44" y1="100" x2="76" y2="100"/></g><circle cx="60" cy="14" r="6" fill="#FFD3E0" stroke="#241D45" stroke-width="2.5"/></svg>
+  </div>
+  <div class="floaty f-btn" data-depth="16" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#BAAAD7" stroke="#241D45" stroke-width="3"/><circle cx="50" cy="50" r="30" fill="none" stroke="#241D45" stroke-width="2" stroke-dasharray="4 5"/><circle cx="40" cy="42" r="5" fill="#241D45"/><circle cx="60" cy="42" r="5" fill="#241D45"/><circle cx="40" cy="60" r="5" fill="#241D45"/><circle cx="60" cy="60" r="5" fill="#241D45"/></svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="tag pink">Understanding Culture, Society &amp; Politics</span></div>
+    <h1><span class="l1">MODULE II.</span><span class="l2">Politics</span></h1>
+    <p class="hero-sub">Politics is not a spectator sport, and politicians are not celebrities to worship. This module is about <span class="u-wavy">power — where it comes from, who it belongs to, and how to use yours</span>. No sides. Just your rights, your vote, and your voice.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#rights">Know Your Rights ↓</a>
+      <a class="btn ghost" href="#vote">Your Voting Power</a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Sovereignty resides in the people <b>✦</b> Public office is a public trust <b>✦</b> Know your rights <b>✦</b> Your vote is your voice <b>✦</b> Principles over personalities <b>✦</b>&nbsp;</span>
+  </div>
+</div>
+
+<!-- ================= WHAT IS POLITICS ================= -->
+<section id="what">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">01 — The Big Idea</span>
+      <h2>Politics is everyone’s business</h2>
+      <p>You don't have to run for office to be political. Every law, every classroom budget, every jeepney fare — politics touches all of it.</p>
+    </div>
+    <div class="def-grid">
+      <div class="sticker def-card rv d1">
+        <p class="big">Politics is the process of deciding <em>“who gets what, when, and how”</em> in a society — how power is gained, shared, used, and questioned. Political science studies these processes; citizenship means <em>taking part in them</em>.</p>
+        <cite>— after Harold Lasswell · UCSP, DepEd SHS Curriculum</cite>
+      </div>
+      <div class="mini-stack">
+        <div class="sticker mini-card rv d2">
+          <h3>⚖ Power &amp; Authority</h3>
+          <p><strong>Power</strong> is the ability to influence others. <strong>Authority</strong> is power that people recognize as legitimate — and in a democracy, legitimacy comes from the people.</p>
+        </div>
+        <div class="sticker mini-card rv d3">
+          <h3>🏛 Governance</h3>
+          <p>How society is steered: making rules, delivering services, and being held accountable — at barangay, local, and national levels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOVEREIGNTY ================= -->
+<section class="sovereign dark" id="sovereignty">
+  <div class="wrap rv">
+    <div class="three-stars" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#F3CD88"/></svg>
+      <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#F3CD88"/></svg>
+      <svg viewBox="0 0 100 100"><path d="M50 6 L61 38 L95 38 L67 58 L77 92 L50 71 L23 92 L33 58 L5 38 L39 38 Z" fill="#F3CD88"/></svg>
+    </div>
+    <span class="quote-mark" aria-hidden="true">”</span>
+    <blockquote>Sovereignty resides in <strong>the people</strong>, and all government authority <strong>emanates from them</strong>.</blockquote>
+    <cite>ARTICLE II, SECTION 1 · 1987 CONSTITUTION OF THE PHILIPPINES</cite>
+    <p class="after">Read that again. The government doesn't grant you power — <strong>you lend power to the government</strong>. Every official, from barangay captain to president, holds borrowed authority. And what is borrowed can be held to account.</p>
+  </div>
+</section>
+
+<!-- ================= RIGHTS ================= -->
+<section id="rights">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">02 — Know Your Rights</span>
+      <h2>The Bill of Rights is <em>yours</em></h2>
+      <p>Rights you don't know about are rights you can't defend. These highlights come from Article III of the 1987 Constitution — written to protect you from the abuse of power.</p>
+    </div>
+    <div class="rights-grid">
+      <article class="right rv d1">
+        <span class="art">ART. III · SEC. 1</span>
+        <h3>Due Process &amp; Equal Protection</h3>
+        <p>No one shall be deprived of life, liberty, or property without due process of law — and the law must protect everyone equally.</p>
+      </article>
+      <article class="right rv d2">
+        <span class="art">ART. III · SEC. 4</span>
+        <h3>Speech, Expression &amp; Press</h3>
+        <p>You may speak, write, assemble, and petition the government. Criticizing officials is a right, not a crime of disloyalty.</p>
+      </article>
+      <article class="right rv d3">
+        <span class="art">ART. III · SEC. 5</span>
+        <h3>Freedom of Religion</h3>
+        <p>The free exercise of religion and belief is protected, and no religious test is required to hold public office.</p>
+      </article>
+      <article class="right rv d4">
+        <span class="art">ART. III · SEC. 3</span>
+        <h3>Privacy</h3>
+        <p>Your private communications and your person are protected against unreasonable searches and seizures.</p>
+      </article>
+      <article class="right rv d1">
+        <span class="art">ART. III · SEC. 7</span>
+        <h3>Right to Information</h3>
+        <p>You have the right to information on matters of public concern — official records, documents, and government transactions.</p>
+      </article>
+      <article class="right rv d2">
+        <span class="art">ART. III · SEC. 8</span>
+        <h3>Freedom of Association</h3>
+        <p>You may form unions, organizations, or movements — including ones that criticize the government.</p>
+      </article>
+    </div>
+    <div class="rights-note rv">
+      <strong>Rights come with responsibilities.</strong> Exercise your freedoms without violating the rights of others — and be ready to defend these rights not just for yourself, but for people you disagree with. That's how rights survive.
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLIC TRUST ================= -->
+<section class="trust dark" id="trust">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">03 — They Serve You</span>
+      <h2>Public servants, <em>not</em> idols</h2>
+      <p>Admire good work — but never surrender your judgment to any politician. Personality cults are how accountability dies.</p>
+    </div>
+    <div class="trust-quote rv">
+      <p>“Public office is a <strong>public trust</strong>. Public officers and employees must at all times be accountable to the people, serve them with utmost responsibility, integrity, loyalty, and efficiency… and lead modest lives.”</p>
+      <cite>ARTICLE XI, SECTION 1 · 1987 CONSTITUTION</cite>
+    </div>
+    <div class="trust-cols">
+      <div class="trust-col do rv d1">
+        <h3>Healthy citizenship ✦</h3>
+        <ul>
+          <li>Support <strong>platforms and principles</strong>, not surnames or slogans</li>
+          <li>Praise good policies — and still question them</li>
+          <li>Judge officials by track record and evidence</li>
+          <li>Change your mind when the facts change</li>
+          <li>Remember: officials are <strong>employees of the people</strong></li>
+        </ul>
+      </div>
+      <div class="trust-col dont rv d2">
+        <h3>Warning signs of idolatry ✕</h3>
+        <ul>
+          <li>Defending a politician no matter what they do</li>
+          <li>Attacking anyone who criticizes "your" candidate</li>
+          <li>Believing one person alone can save the country</li>
+          <li>Excusing corruption because "they all do it"</li>
+          <li>Loyalty to a person over loyalty to the Constitution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CORRUPTION ================= -->
+<section id="corruption">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">04 — The Enemy Is Corruption, Not Each Other</span>
+      <h2>Corruption: how it steals from you</h2>
+      <p>Corruption isn't an abstract scandal — it's a classroom that was never built, medicine that never arrived, a road that crumbles in a year.</p>
+    </div>
+    <div class="corrupt-grid">
+      <div class="corrupt-card tint1 sticker rv d1" style="border:0">
+        <span class="tag dark">What it looks like</span>
+        <h3>Common forms</h3>
+        <ul>
+          <li><strong>Grift &amp; bribery</strong> — public funds or favors exchanged for personal gain</li>
+          <li><strong>Nepotism &amp; cronyism</strong> — positions for relatives and friends, not the qualified</li>
+          <li><strong>Kickbacks</strong> — inflated contracts with a cut returned to officials</li>
+          <li><strong>Vote-buying</strong> — trading cash or goods for your ballot</li>
+        </ul>
+      </div>
+      <div class="corrupt-card tint2 sticker rv d2" style="border:0">
+        <span class="tag dark">What it costs</span>
+        <h3>The real price</h3>
+        <ul>
+          <li>Fewer classrooms, hospitals, and services — you pay twice: taxes lost, services denied</li>
+          <li>Public trust erodes; cynicism replaces participation</li>
+          <li>The poor pay the highest price — petty bribes hit hardest at the bottom</li>
+          <li>Honest workers and businesses are pushed out</li>
+        </ul>
+      </div>
+      <div class="corrupt-card tint3 sticker rv d3" style="border:0">
+        <h3>What citizens can do — starting now</h3>
+        <ul>
+          <li><strong>Use your right to information.</strong> Ask how funds are spent — budgets and projects are public documents.</li>
+          <li><strong>Refuse to sell your vote.</strong> Vote-buying money lasts a day; bad governance lasts years.</li>
+          <li><strong>Report through proper channels</strong> — the Ombudsman, COA, and Civil Service Commission exist to receive complaints.</li>
+          <li><strong>Support transparency.</strong> Follow how your barangay, city, and agencies spend — many publish budgets online.</li>
+          <li><strong>Vote and volunteer.</strong> Corruption thrives in low turnout and silence.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VOTE ================= -->
+<section class="vote" id="vote">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">05 — Your Voting Power</span>
+      <h2>One vote. <em>Real</em> power.</h2>
+      <p>Elections are the one day a billionaire and a student have exactly the same power. Here's how to make yours count.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv d1">
+        <h3>Register</h3>
+        <p>Register with COMELEC as soon as you're eligible. No registration, no vote — mark deadlines early and keep your records updated.</p>
+      </div>
+      <div class="step rv d2">
+        <h3>Research</h3>
+        <p>Study candidates' track records, platforms, and sources of funding — not their jingles, posters, or viral clips.</p>
+      </div>
+      <div class="step rv d3">
+        <h3>Scrutinize</h3>
+        <p>Attend forums, read multiple sources, and ask: what have they actually done? Who benefits from their policies?</p>
+      </div>
+      <div class="step rv d4">
+        <h3>Vote &amp; Guard</h3>
+        <p>Cast your vote freely, refuse bribes, and help protect the count — volunteer as a poll watcher if you can.</p>
+      </div>
+    </div>
+    <div class="vote-banner rv">
+      <h3>Your vote is not for sale. <em>It is for the future.</em></h3>
+      <p>Democracy isn't a gift from politicians — it's a system the people maintain. Voting is the beginning of citizenship, not the end: attend consultations, join your community, and keep watch between elections.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BIAS ================= -->
+<section id="bias">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">06 — Think Independently</span>
+      <h2>Check your <em>bias</em> at the door</h2>
+      <p>Being non-partisan doesn't mean having no opinions. It means your opinions are earned through evidence — not inherited from family, barkada, or a feed algorithm.</p>
+    </div>
+    <div class="bias-grid">
+      <div class="bias-card rv d1">
+        <span class="chip">BIAS CHECK 01</span>
+        <h3>Bandwagon effect</h3>
+        <p>"Everyone supports them, so I should too." Crowds are not evidence. Decide based on track record and platform, not popularity.</p>
+      </div>
+      <div class="bias-card rv d2">
+        <span class="chip">BIAS CHECK 02</span>
+        <h3>Halo effect</h3>
+        <p>Charming, good-looking, or funny ≠ competent. Evaluate the whole record, including the parts that aren't photogenic.</p>
+      </div>
+      <div class="bias-card rv d3">
+        <span class="chip">BIAS CHECK 03</span>
+        <h3>Confirmation bias</h3>
+        <p>We seek news that agrees with us and skip what doesn't. Deliberately read sources that challenge your view before deciding.</p>
+      </div>
+      <div class="bias-card rv d4">
+        <span class="chip">BIAS CHECK 04</span>
+        <h3>Us vs. them</h3>
+        <p>Politics is not a basketball rivalry. People who vote differently are fellow citizens with shared problems — not enemies to defeat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLEDGE ================= -->
+<section class="pledge dark">
+  <div class="wrap box rv">
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="10" fill="#F3CD88"/><g stroke="#F3CD88" stroke-width="5" stroke-linecap="round"><line x1="50" y1="8" x2="50" y2="24"/><line x1="50" y1="76" x2="50" y2="92"/><line x1="8" y1="50" x2="24" y2="50"/><line x1="76" y1="50" x2="92" y2="50"/><line x1="20" y1="20" x2="31" y2="31"/><line x1="69" y1="69" x2="80" y2="80"/><line x1="80" y1="20" x2="69" y2="31"/><line x1="31" y1="69" x2="20" y2="80"/></g></svg>
+    </div>
+    <span class="kicker" style="color:var(--gold)">The Citizen's Stance</span>
+    <h2>I serve no politician. <em>They serve the people — including me.</em></h2>
+    <p>I will know my rights and defend them — even for people I disagree with. I will support principles, not personalities. I will refuse vote-buying, question every official respectfully but firmly, and remember that in a democracy, the people are not the audience. <strong>We are the authority.</strong></p>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-title">Power to the people — always.</div>
+  <p>Module II complete. Next: how to protect yourself (and everyone else) in the information battlefield of the internet.</p>
+  <div class="links">
+    <a href="module-3-digital-literacy.html">Next: Module III · Digital Literacy →</a>
+    <a href="module-1-culture.html">Module I · Culture</a>
+    <a href="#top">Back to top ↑</a>
+  </div>
+  <div class="tiny">THIS MODULE IS STRICTLY NON-PARTISAN. It endorses no candidate, party, or ideology — only informed, independent, and rights-respecting citizenship. · UCSP LEARNING MODULE · POLITICS</div>
+</footer>
+
+<script>
+(function(){
+  var t=document.getElementById('marqueeTrack');
+  t.innerHTML+=t.innerHTML;
+})();
+
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var hero=document.querySelector('.hero');
+  var layers=document.querySelectorAll('.floaty');
+  var rx=0,ry=0,cx=0,cy=0;
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    rx=(e.clientX-r.left)/r.width-.5;
+    ry=(e.clientY-r.top)/r.height-.5;
+  });
+  (function tick(){
+    cx+=(rx-cx)*.06;cy+=(ry-cy)*.06;
+    layers.forEach(function(l){
+      var d=parseFloat(l.dataset.depth||20);
+      l.style.transform='translate3d('+(cx*d)+'px,'+(cy*d)+'px,0)';
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>
